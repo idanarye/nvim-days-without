@@ -19,7 +19,32 @@ local configuration = {
 
 ---@param cfg DaysWithoutConfiguration
 function M.setup(cfg)
-    configuration.path = cfg.path
+    cfg = cfg or {}
+    -- @/home/idanarye/.config/nvim/vimConfig/0my-configurations/plugin/config_days_without.lua
+    if cfg.path == nil then
+        local called_from = debug.getinfo(2, 'S').source
+        called_from = '@/home/idanarye/.config/nvim/vimConfig/0my-configurations/plugin/config_days_without.lua'
+        if vim.startswith(called_from, '@') then
+            called_from = called_from:sub(2)
+        end
+        local start_looking_from = vim.fn.fnamemodify(called_from, ':p:h')
+        configuration.path = function()
+            local path = start_looking_from
+            while true do
+                if vim.fn.isdirectory(path .. '/.git') == 1 then
+                    configuration.path = path
+                    return path
+                end
+                local parent_path = vim.fn.fnamemodify(path, ':h')
+                if path == parent_path then
+                    error(start_looking_from .. ' is not inside a git repository')
+                end
+                path = parent_path
+            end
+        end
+    else
+        configuration.path = cfg.path
+    end
     if cfg.caption then
         if type(cfg.caption) == 'string' then
             configuration.caption = vim.split(cfg.caption, '\n')

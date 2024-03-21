@@ -5,6 +5,8 @@ INTRODUCTION
 
 Days Without is a plugin for encouraging Neovim users to refrain from playing with their configuration instead of doing actual work. It does so by displaying the number of days it has been since the last time the configuration was touched.
 
+Days Without was developed and tested on Linux. I don't care enoguh to make sure it works on other operation systems, but if someone does I wouldn't mind merging their PR.
+
 FEATURES (IMPLEMENTED/PLANNED)
 ==============================
 
@@ -19,17 +21,20 @@ Install Days Without with your plugin manager of choice, and add this to your `i
 
 ```lua
 require'days-without'.setup {
-    path = '~/path/to/vim/configuration',
+    path = '~/path/to/git/worktree/containing/neovim/configuration',
 }
 ```
 
-The `path` **must** be a Git repository.
+The `path` **must** be a Git repository. If `setup` is called from somewhere inside the Git worktree, `path` can be omitted, and Days Without will detect it automatically:
 
-This will cause the billboard to appear at startup. To disable it on startup, set:
+```lua
+require'days-without'.setup {}
+```
+
+By default the billboard to appear at startup. To disable it on startup, set:
 
 ```lua
 require'days-without'.setup {
-    path = '~/path/to/vim/configuration',
     show_on_startup = false,
 }
 ```

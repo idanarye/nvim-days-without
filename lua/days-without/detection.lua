@@ -3,6 +3,9 @@ local M = {}
 local util = require'days-without.util'
 
 function M.detect_git(path)
+    if vim.is_callable(path) then
+        path = path()
+    end
     local touched_files = {}
     for _, filename in ipairs(util.run_shell_cmd { cwd = path, 'git', 'diff', '--name-only' }) do
         touched_files[filename] = true
