@@ -66,6 +66,9 @@ function Billboard:show_at(pos)
         util.run_in_main_loop(function()
             self.buf = vim.api.nvim_create_buf(false, true)
             vim.api.nvim_buf_set_lines(self.buf, 0, 1, true, self.lines)
+            win_config.style = 'minimal'
+            win_config.border = 'rounded'
+            win_config.noautocmd = true
             self.win = vim.api.nvim_open_win(self.buf, false, win_config)
             vim.api.nvim_win_set_option(self.win, 'wrap', false)
         end)

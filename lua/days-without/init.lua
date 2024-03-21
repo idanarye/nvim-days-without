@@ -10,8 +10,8 @@ local configuration = {
     path = nil,
     caption = {
         '',
-        '  DAYS      WITHOUT',
-        '      modifying',
+        '  DAYS  WITHOUT',
+        '    modifying',
         "Neovim's configuration",
         '',
     }
