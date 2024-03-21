@@ -47,6 +47,18 @@ And run it manually with:
 :lua require'days-without'.show()
 ```
 
+
+ALTERNATIVES
+============
+
+* [ConfigPulse](https://github.com/mrquantumcodes/configpulse)
+* [Ohne Accidents](https://github.com/blumaa/ohne-accidents)
+
+Both of these plugins differ from Days Without:
+
+* They are based on the modification date of the files - unlike Days Without which checks the Git information.
+* They `print` their message - Days Without shows a pretty billboard.
+
 CONTRIBUTION GUIDELINES
 =======================
 
