@@ -37,4 +37,18 @@ function M.billboard_lines(in_box, caption_lines)
     return lines
 end
 
+function M.calc_lines_dimensions(lines)
+    local cols = 0
+    for _, line in ipairs(lines) do
+        local length = #line
+        if cols < length then
+            cols = length
+        end
+    end
+    return {
+        rows = #lines,
+        cols = cols,
+    }
+end
+
 return M

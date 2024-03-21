@@ -22,6 +22,26 @@ function M.enforce_coroutine()
     return co
 end
 
+function M.wait(ms)
+    local co = M.enforce_coroutine()
+    vim.defer_fn(function()
+        coroutine.resume(co)
+    end, ms)
+    coroutine.yield()
+end
+
+function M.run_in_main_loop(dlg, ...)
+    local co = coroutine.running()
+    if co then
+        vim.schedule(function(...)
+            coroutine.resume(co, dlg(...))
+        end, ...)
+        return coroutine.yield()
+    else
+        return dlg(...)
+    end
+end
+
 local function pipe_reader(pipe)
     local chunks = {}
     vim.loop.read_start(pipe, function(err, data)
