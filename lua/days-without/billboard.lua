@@ -81,8 +81,6 @@ function Billboard:close()
 end
 
 function M.animate_billboard(lines)
-    local co = util.enforce_coroutine()
-
     local billboard = M.make_billboard(lines)
     billboard:collect_screen_dimensions()
     local col = billboard.screen_dimensions.cols - 1

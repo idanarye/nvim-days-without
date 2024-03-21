@@ -8,9 +8,9 @@ Days Without is a plugin for encouraging Neovim users to refrain from playing wi
 FEATURES (IMPLEMENTED/PLANNED)
 ==============================
 
-* [ ] Determining the last time the configuration was changed.
-* [ ] Exposing that information for other plugins (e.g. custom splash screens) to use.
-* [ ] Displaying a billboard (using a floating window) with that information.
+* [x] Determining the last time the configuration was changed.
+* [x] Exposing that information for other plugins (e.g. custom splash screens) to use.
+* [x] Displaying a billboard (using a floating window) with that information.
 
 SETUP
 =====
@@ -19,7 +19,25 @@ Install Days Without with your plugin manager of choice, and add this to your `i
 
 ```lua
 require'days-without'.setup {
+    path = '~/path/to/vim/configuration',
 }
+```
+
+The `path` **must** be a Git repository.
+
+This will cause the billboard to appear at startup. To disable it on startup, set:
+
+```lua
+require'days-without'.setup {
+    path = '~/path/to/vim/configuration',
+    show_on_startup = false,
+}
+```
+
+And run it manually with:
+
+```vim
+:lua require'days-without'.show()
 ```
 
 CONTRIBUTION GUIDELINES
