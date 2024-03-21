@@ -7,6 +7,8 @@ Days Without is a plugin for encouraging Neovim users to refrain from playing wi
 
 Days Without was developed and tested on Linux. I don't care enoguh to make sure it works on other operation systems, but if someone does I wouldn't mind merging their PR.
 
+[![asciicast](https://asciinema.org/a/snAZF4bPWYXywrERXauTH8Lni.svg)](https://asciinema.org/a/snAZF4bPWYXywrERXauTH8Lni)
+
 FEATURES (IMPLEMENTED/PLANNED)
 ==============================
 
